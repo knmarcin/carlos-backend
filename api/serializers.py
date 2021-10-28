@@ -60,3 +60,8 @@ class HistorySerializer(serializers.ModelSerializer):
                   'worker',
                   'service_date',
                   'days_to_service')
+
+class CreateHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = History
+        fields = ('car', 'employee', 'repair_log')
