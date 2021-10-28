@@ -1,7 +1,8 @@
 from rest_framework import routers
 from api.views import HistoryViewSet
+from django.urls import path
 
-router = routers.DefaultRouter()
-router.register('history', HistoryViewSet, 'history')
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('history/', HistoryViewSet.as_view(), name='history'),
+]
