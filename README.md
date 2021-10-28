@@ -30,6 +30,12 @@ So at this moment we have 3 models, which are:
 ```/closest-services``` ```GET``` 
 - list of closest services for cars
 
+```/workers``` ```GET```
+- self-explanatory
+
+```/cars``` ```GET``` ```POST``` 
+- self-explanatory 
+
 ### Security
 
 App is using default django/django-rest-framework auth
