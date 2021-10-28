@@ -26,7 +26,7 @@ class History(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     repair_log = models.TextField()
-    date_of_repair = models.DateField()
+    date_of_repair = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.employee} {self.date_of_repair}"
