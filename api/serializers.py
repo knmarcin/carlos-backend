@@ -76,3 +76,29 @@ class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
         fields = '__all__'
+
+
+class ClosestServicesSerializer(serializers.ModelSerializer):
+    days_to_service = serializers.SerializerMethodField()
+    make_model = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_make_model(obj):
+        return f"{obj.make} {obj.model}"
+
+    @staticmethod
+    def get_days_to_service(obj):
+        try:
+            new_date = datetime.date(
+                obj.service_date.year + 1,
+                obj.service_date.month,
+                obj.service_date.day)
+            return (new_date - datetime.date.today()).days
+        except Exception as e:
+            print(e)
+            return 0
+
+    class Meta:
+        model = Car
+        fields = ('service_date', 'owner','registration', 'days_to_service', 'make_model', 'year', 'owner_phone_number')
+

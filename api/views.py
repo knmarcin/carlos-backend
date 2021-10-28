@@ -1,6 +1,10 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from api.models import History, Employee, Car
-from api.serializers import HistorySerializer, CreateHistorySerializer, WorkerSerializer, CarSerializer
+from api.serializers import (HistorySerializer,
+                             CreateHistorySerializer,
+                             WorkerSerializer,
+                             CarSerializer,
+                             ClosestServicesSerializer)
 from rest_framework import generics, filters
 
 
@@ -41,3 +45,10 @@ class CarViewSet(generics.ListCreateAPIView):
 class CarDetailViewSet(generics.RetrieveUpdateDestroyAPIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
+
+
+class ClosestServicesViewSet(generics.ListAPIView):
+    queryset = Car.objects.all()
+    serializer_class = ClosestServicesSerializer
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['service_date']
