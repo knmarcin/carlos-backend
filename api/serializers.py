@@ -61,16 +61,19 @@ class HistorySerializer(serializers.ModelSerializer):
                   'service_date',
                   'days_to_service')
 
+
 class CreateHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = History
         fields = ('car', 'employee', 'repair_log')
 
 
+
 class WorkerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = ('id', 'name')
+
 
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
@@ -100,5 +103,10 @@ class ClosestServicesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Car
-        fields = ('service_date', 'owner','registration', 'days_to_service', 'make_model', 'year', 'owner_phone_number')
-
+        fields = ('service_date',
+                  'owner',
+                  'registration',
+                  'days_to_service',
+                  'make_model',
+                  'year',
+                  'owner_phone_number')
