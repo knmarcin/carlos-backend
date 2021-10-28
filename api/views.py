@@ -1,6 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from api.models import History
-from api.serializers import HistorySerializer, CreateHistorySerializer
+from api.models import History, Employee, Car
+from api.serializers import HistorySerializer, CreateHistorySerializer, WorkerSerializer, CarSerializer
 from rest_framework import generics, filters
 
 
@@ -26,3 +26,18 @@ class HistoryDetailView(generics.RetrieveUpdateDestroyAPIView):
 class CreateHistoryView(generics.CreateAPIView):
     queryset = History.objects.all()
     serializer_class = CreateHistorySerializer
+
+
+class WorkerViewSet(generics.ListAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = WorkerSerializer
+
+
+class CarViewSet(generics.ListCreateAPIView):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+
+
+class CarDetailViewSet(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer

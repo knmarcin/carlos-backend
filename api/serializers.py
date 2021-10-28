@@ -1,6 +1,6 @@
 import datetime
 from rest_framework import serializers
-from api.models import History
+from api.models import History, Employee, Car
 
 
 class HistorySerializer(serializers.ModelSerializer):
@@ -65,3 +65,14 @@ class CreateHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = History
         fields = ('car', 'employee', 'repair_log')
+
+
+class WorkerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = ('id', 'name')
+
+class CarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = '__all__'
