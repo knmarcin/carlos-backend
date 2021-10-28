@@ -1,7 +1,8 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from api.models import History
-from api.serializers import HistorySerializer
+from api.serializers import HistorySerializer, CreateHistorySerializer
 from rest_framework import generics, filters
+
 
 
 class HistoryViewSet(generics.ListAPIView):
@@ -20,3 +21,8 @@ class HistoryViewSet(generics.ListAPIView):
 class HistoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = History.objects.all()
     serializer_class = HistorySerializer
+
+
+class CreateHistoryView(generics.CreateAPIView):
+    queryset = History.objects.all()
+    serializer_class = CreateHistorySerializer
