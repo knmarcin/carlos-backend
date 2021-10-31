@@ -11,6 +11,11 @@ class HistorySerializer(serializers.ModelSerializer):
     service_date = serializers.SerializerMethodField()
     days_to_service = serializers.SerializerMethodField()
     car_owner = serializers.SerializerMethodField()
+    car_vin = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_car_vin(obj):
+        return obj.car.vin_number
 
     @staticmethod
     def get_make_model(obj):
@@ -59,7 +64,8 @@ class HistorySerializer(serializers.ModelSerializer):
                   'repair_log',
                   'worker',
                   'service_date',
-                  'days_to_service')
+                  'days_to_service',
+                  'car_vin')
 
 
 class CreateHistorySerializer(serializers.ModelSerializer):

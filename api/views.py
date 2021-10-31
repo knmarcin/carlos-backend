@@ -19,7 +19,8 @@ class HistoryViewSet(generics.ListAPIView):
                      'car__model',
                      'car__make',
                      'car__year',
-                     'car__owner']
+                     'car__owner',
+                     'car__vin_number']
 
 
 class HistoryDetailView(generics.RetrieveUpdateDestroyAPIView):
