@@ -103,9 +103,11 @@ class ClosestServicesSerializer(serializers.ModelSerializer):
                 obj.service_date.month,
                 obj.service_date.day)
             return (new_date - datetime.date.today()).days
+
+
         except Exception as e:
             print(e)
-            return 0
+            return -1
 
     class Meta:
         model = Car
