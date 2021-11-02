@@ -50,6 +50,9 @@ class CarViewSet(generics.ListCreateAPIView):
                      'year',
                      'owner',
                      'owner_phone_number']
+    filter_fields = [
+        'vin_number'
+    ]
 
 
 class CarDetailViewSet(generics.RetrieveUpdateDestroyAPIView):
