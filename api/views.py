@@ -41,6 +41,15 @@ class WorkerViewSet(generics.ListAPIView):
 class CarViewSet(generics.ListCreateAPIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = [
+                     'vin_number',
+                     'registration',
+                     'make',
+                     'model',
+                     'year',
+                     'owner',
+                     'owner_phone_number']
 
 
 class CarDetailViewSet(generics.RetrieveUpdateDestroyAPIView):
