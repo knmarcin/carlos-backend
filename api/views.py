@@ -21,6 +21,7 @@ class HistoryViewSet(generics.ListAPIView):
                      'car__year',
                      'car__owner',
                      'car__vin_number']
+    filter_fields = ['car__id']
 
 
 class HistoryDetailView(generics.RetrieveUpdateDestroyAPIView):
