@@ -1,5 +1,11 @@
-from api.views import HistoryViewSet, HistoryDetailView, CreateHistoryView, WorkerViewSet, CarViewSet, CarDetailViewSet, ClosestServicesViewSet
 from django.urls import path
+from api.views import (HistoryViewSet,
+                       HistoryDetailView,
+                       CreateHistoryView,
+                       WorkerViewSet,
+                       CarViewSet,
+                       CarDetailViewSet,
+                       ClosestServicesViewSet)
 
 
 urlpatterns = [
