@@ -12,7 +12,7 @@ from rest_framework import generics, filters
 class HistoryViewSet(generics.ListAPIView):
     queryset = History.objects.all()
     serializer_class = HistorySerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['repair_log',
                      'date_of_repair',
                      'employee__name',
@@ -22,6 +22,7 @@ class HistoryViewSet(generics.ListAPIView):
                      'car__owner',
                      'car__vin_number']
     filter_fields = ['car__id']
+    ordering_fields = ['id']
 
 
 class HistoryDetailView(generics.RetrieveUpdateDestroyAPIView):
