@@ -52,9 +52,7 @@ class CarViewSet(generics.ListCreateAPIView):
                      'year',
                      'owner',
                      'owner_phone_number']
-    filter_fields = [
-        'vin_number'
-    ]
+    filter_fields = ['vin_number']
     ordering_fields = ['id']
 
 
