@@ -20,7 +20,8 @@ class HistoryViewSet(generics.ListAPIView):
                      'car__make',
                      'car__year',
                      'car__owner',
-                     'car__vin_number']
+                     'car__vin_number',
+                     'car__registration']
     filter_fields = ['car__id']
     ordering_fields = ['id']
 
