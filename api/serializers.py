@@ -123,4 +123,5 @@ class ClosestServicesSerializer(serializers.ModelSerializer):
                   'days_to_service',
                   'make_model',
                   'year',
-                  'owner_phone_number')
+                  'owner_phone_number',
+                  'id')
