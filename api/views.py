@@ -89,15 +89,15 @@ class Dashboard(APIView):
                 self.number_of_repairs_this_year = History.objects.filter(
                     date_of_repair__year=today.month).count()
 
-                self.number_of_repairs_total_by_workers = [{i.name: History.objects.filter(
-                    employee=i).count() for i in workers}]
+                self.number_of_repairs_total_by_workers = {i.name: History.objects.filter(
+                    employee=i).count() for i in workers}
 
-                self.number_of_repairs_this_year_by_workers = [{i.name: History.objects.filter(
-                    employee=i).filter(date_of_repair__year=today.year).count() for i in workers}]
+                self.number_of_repairs_this_year_by_workers = {i.name: History.objects.filter(
+                    employee=i).filter(date_of_repair__year=today.year).count() for i in workers}
 
-                self.number_of_repairs_this_month_by_workers = [{i.name: History.objects.filter(
+                self.number_of_repairs_this_month_by_workers = {i.name: History.objects.filter(
                     employee=i).filter(date_of_repair__year=today.year,
-                                       date_of_repair__month=today.month).count() for i in workers}]
+                                       date_of_repair__month=today.month).count() for i in workers}
 
         obj = Obj()
         serializer = DashboardSerializer(obj)
