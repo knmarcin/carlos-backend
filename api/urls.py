@@ -10,6 +10,7 @@ from api.views import (HistoryViewSet,
 
 
 urlpatterns = [
+    path('dashboard/', Dashboard.as_view()),
     path('history/', HistoryViewSet.as_view()),
     path('history/create/', CreateHistoryView.as_view()),
     path('history/<int:pk>/', HistoryDetailView.as_view()),
