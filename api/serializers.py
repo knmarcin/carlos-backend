@@ -126,7 +126,7 @@ class ClosestServicesSerializer(serializers.ModelSerializer):
                   'owner_phone_number',
                   'id')
 
-class DashboardSerializer(serializers.Serializer):
+class DashboardSerializer(serializers.ModelSerializer):
     number_of_repairs = serializers.SerializerMethodField()
     number_of_workers = serializers.SerializerMethodField()
     number_of_cars = serializers.SerializerMethodField()
@@ -153,3 +153,13 @@ class DashboardSerializer(serializers.Serializer):
     def get_number_of_repairs_this_year():
         today = datetime.date.today()
         return History.objects.filter(date_of_repair__year=today.year).count()
+
+    class Meta:
+        model = History
+        fields = {
+            'number_of_repairs',
+            'number_of_workers',
+            'number_of_cars',
+            'number_of_repairs_this_month',
+            'Number_of_repairs_this_year'
+        }
