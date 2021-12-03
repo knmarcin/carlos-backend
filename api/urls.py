@@ -17,5 +17,4 @@ urlpatterns = [
     path('cars/', CarViewSet.as_view()),
     path('cars/<int:pk>/', CarDetailViewSet.as_view()),
     path('closest-services/', ClosestServicesViewSet.as_view()),
-    path('dashboard/', Dashboard.as_view()),
 ]
