@@ -87,7 +87,7 @@ class Dashboard(APIView):
                     date_of_repair__month=today.month).count()
 
                 self.number_of_repairs_this_year = History.objects.filter(
-                    date_of_repair__year=today.month).count()
+                    date_of_repair__year=today.year).count()
 
                 self.number_of_repairs_total_by_workers = {i.name: History.objects.filter(
                     employee=i).count() for i in workers}
