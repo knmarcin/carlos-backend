@@ -125,3 +125,12 @@ class ClosestServicesSerializer(serializers.ModelSerializer):
                   'year',
                   'owner_phone_number',
                   'id')
+
+
+class DashboardSerializer(serializers.Serializer):
+    number_of_repairs_total = serializers.IntegerField()
+    number_of_repairs_this_month = serializers.IntegerField()
+    number_of_repairs_this_year = serializers.IntegerField()
+    number_of_repairs_total_by_workers = serializers.DictField()
+    number_of_repairs_this_year_by_workers = serializers.DictField()
+    number_of_repairs_this_month_by_workers = serializers.DictField()

@@ -5,10 +5,12 @@ from api.views import (HistoryViewSet,
                        WorkerViewSet,
                        CarViewSet,
                        CarDetailViewSet,
-                       ClosestServicesViewSet)
+                       ClosestServicesViewSet,
+                       Dashboard)
 
 
 urlpatterns = [
+    path('dashboard/', Dashboard.as_view()),
     path('history/', HistoryViewSet.as_view()),
     path('history/create/', CreateHistoryView.as_view()),
     path('history/<int:pk>/', HistoryDetailView.as_view()),

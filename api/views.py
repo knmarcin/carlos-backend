@@ -4,8 +4,13 @@ from api.serializers import (HistorySerializer,
                              CreateHistorySerializer,
                              WorkerSerializer,
                              CarSerializer,
-                             ClosestServicesSerializer)
-from rest_framework import generics, filters
+                             ClosestServicesSerializer,
+                             DashboardSerializer)
+from rest_framework import generics, filters, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from datetime import datetime
 
 
 
@@ -67,3 +72,32 @@ class ClosestServicesViewSet(generics.ListAPIView):
     serializer_class = ClosestServicesSerializer
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['service_date']
+
+class Dashboard(APIView):
+    def get(self, request):
+        today = datetime.now()
+        workers = Employee.objects.all()
+
+        class Obj:
+            def __init__(self):
+                self.number_of_repairs_total = History.objects.all().count()
+                self.number_of_repairs_this_month = History.objects.filter(
+                    date_of_repair__year=today.year,
+                    date_of_repair__month=today.month).count()
+
+                self.number_of_repairs_this_year = History.objects.filter(
+                    date_of_repair__year=today.month).count()
+
+                self.number_of_repairs_total_by_workers = {i.name: History.objects.filter(
+                    employee=i).count() for i in workers}
+
+                self.number_of_repairs_this_year_by_workers = {i.name: History.objects.filter(
+                    employee=i).filter(date_of_repair__year=today.year).count() for i in workers}
+
+                self.number_of_repairs_this_month_by_workers = {i.name: History.objects.filter(
+                    employee=i).filter(date_of_repair__year=today.year,
+                                       date_of_repair__month=today.month).count() for i in workers}
+
+        obj = Obj()
+        serializer = DashboardSerializer(obj)
+        return Response(serializer.data, status=status.HTTP_200_OK)
