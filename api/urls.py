@@ -5,7 +5,8 @@ from api.views import (HistoryViewSet,
                        WorkerViewSet,
                        CarViewSet,
                        CarDetailViewSet,
-                       ClosestServicesViewSet)
+                       ClosestServicesViewSet,
+                       Dashboard)
 
 
 urlpatterns = [
@@ -15,5 +16,6 @@ urlpatterns = [
     path('workers/', WorkerViewSet.as_view()),
     path('cars/', CarViewSet.as_view()),
     path('cars/<int:pk>/', CarDetailViewSet.as_view()),
-    path('closest-services/', ClosestServicesViewSet.as_view())
+    path('closest-services/', ClosestServicesViewSet.as_view()),
+    path('dashboard/', Dashboard.as_view()),
 ]

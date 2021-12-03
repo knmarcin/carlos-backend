@@ -4,7 +4,8 @@ from api.serializers import (HistorySerializer,
                              CreateHistorySerializer,
                              WorkerSerializer,
                              CarSerializer,
-                             ClosestServicesSerializer)
+                             ClosestServicesSerializer,
+                             DashboardSerializer)
 from rest_framework import generics, filters
 
 
@@ -67,3 +68,8 @@ class ClosestServicesViewSet(generics.ListAPIView):
     serializer_class = ClosestServicesSerializer
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['service_date']
+
+class Dashboard(generics.RetrieveAPIView):
+    queryset = History.objects.all()
+    serializer_class = DashboardSerializer()
+
