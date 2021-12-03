@@ -71,5 +71,5 @@ class ClosestServicesViewSet(generics.ListAPIView):
 
 class Dashboard(generics.RetrieveAPIView):
     queryset = History.objects.all()
-    serializer_class = DashboardSerializer()
+    serializer_class = DashboardSerializer
 
