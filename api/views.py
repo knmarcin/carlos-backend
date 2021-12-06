@@ -11,6 +11,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 from datetime import datetime
+import operator
 
 
 
@@ -93,6 +94,7 @@ class Dashboard(APIView):
                 return_list = []
                 for i in workers:
                     return_list.append({"name": i.name, "count": History.objects.filter(employee=i).count()})
+                return_list.sort(key=operator.itemgetter("count"), reverse=True)
                 self.number_of_repairs_total_by_workers = return_list
 
                 return_list = []
@@ -100,6 +102,7 @@ class Dashboard(APIView):
                     return_list.append({"name": i.name, "count": History.objects.filter(
                         employee=i).filter(date_of_repair__year=today.year).count()})
 
+                return_list.sort(key=operator.itemgetter("count"), reverse=True)
                 self.number_of_repairs_this_year_by_workers = return_list
 
                 return_list = []
@@ -108,6 +111,7 @@ class Dashboard(APIView):
                         employee=i).filter(date_of_repair__year=today.year,
                                            date_of_repair__month=today.month).count()})
 
+                return_list.sort(key=operator.itemgetter("count"), reverse=True)
                 self.number_of_repairs_this_month_by_workers = return_list
 
         obj = Obj()
