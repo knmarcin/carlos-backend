@@ -74,6 +74,7 @@ class ClosestServicesViewSet(generics.ListAPIView):
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['service_date']
 
+
 class Dashboard(APIView):
     def get(self, request):
         today = datetime.now()
@@ -89,15 +90,25 @@ class Dashboard(APIView):
                 self.number_of_repairs_this_year = History.objects.filter(
                     date_of_repair__year=today.month).count()
 
-                self.number_of_repairs_total_by_workers = {i.name: History.objects.filter(
-                    employee=i).count() for i in workers}
+                return_list = []
+                for i in workers:
+                    return_list.append({"name": i.name, "count": History.objects.filter(employee=i).count()})
+                self.number_of_repairs_total_by_workers = return_list
 
-                self.number_of_repairs_this_year_by_workers = {i.name: History.objects.filter(
-                    employee=i).filter(date_of_repair__year=today.year).count() for i in workers}
+                return_list = []
+                for i in workers:
+                    return_list.append({"name": i.name, "count": History.objects.filter(
+                        employee=i).filter(date_of_repair__year=today.year).count()})
 
-                self.number_of_repairs_this_month_by_workers = {i.name: History.objects.filter(
-                    employee=i).filter(date_of_repair__year=today.year,
-                                       date_of_repair__month=today.month).count() for i in workers}
+                self.number_of_repairs_this_year_by_workers = return_list
+
+                return_list = []
+                for i in workers:
+                    return_list.append({"name": i.name, "count": History.objects.filter(
+                        employee=i).filter(date_of_repair__year=today.year,
+                                           date_of_repair__month=today.month).count()})
+
+                self.number_of_repairs_this_month_by_workers = return_list
 
         obj = Obj()
         serializer = DashboardSerializer(obj)
