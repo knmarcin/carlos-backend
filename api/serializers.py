@@ -105,7 +105,7 @@ class ClosestServicesSerializer(serializers.ModelSerializer):
     def get_days_to_service(obj):
         try:
             new_date = datetime.date(
-                obj.service_date.year + 1,
+                obj.service_date.year,
                 obj.service_date.month,
                 obj.service_date.day)
             return (new_date - datetime.date.today()).days
