@@ -114,6 +114,14 @@ class Dashboard(APIView):
                 return_list.sort(key=operator.itemgetter("count"), reverse=True)
                 self.number_of_repairs_this_month_by_workers = return_list
 
+                return_list = []
+                months = (i for i in range(1,13))
+                for i in months:
+                    return_list.append({"month": i, "count": History.objects.filter(date_of_repair__year=today.year,
+                                                                                    date_of_repair__month=i).count()})
+                self.number_of_repairs_this_year_by_month = return_list
+
+
         obj = Obj()
         serializer = DashboardSerializer(obj)
         return Response(serializer.data, status=status.HTTP_200_OK)

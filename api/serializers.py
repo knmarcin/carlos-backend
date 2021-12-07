@@ -134,3 +134,4 @@ class DashboardSerializer(serializers.Serializer):
     number_of_repairs_total_by_workers = serializers.ListField()
     number_of_repairs_this_year_by_workers = serializers.ListField()
     number_of_repairs_this_month_by_workers = serializers.ListField()
+    number_of_repairs_this_year_by_month = serializers.ListField()
