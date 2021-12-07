@@ -132,7 +132,7 @@ class Dashboard(APIView):
 
 
                 for i in months_dict.items():
-                    return_list.append({i[0]: i[1], "count": History.objects.filter(date_of_repair__year=today.year,
+                    return_list.append({"month": i[1], "count": History.objects.filter(date_of_repair__year=today.year,
                                                                                     date_of_repair__month=i).count()})
                 self.number_of_repairs_this_year_by_month = return_list
 
