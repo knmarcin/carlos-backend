@@ -17,5 +17,5 @@ urlpatterns = [
     path('workers/', WorkerViewSet.as_view()),
     path('cars/', CarViewSet.as_view()),
     path('cars/<int:pk>/', CarDetailViewSet.as_view()),
-    path('closest-services/', ClosestServicesViewSet.as_view())
+    path('closest-services/', ClosestServicesViewSet.as_view()),
 ]
