@@ -7,36 +7,25 @@ The main purposes of this project are, allowing user to:
 - add 'Repair log' to a 'CAR', with data like: 
     - time stamp
     - information about a service
-    - which employee did a service
-- retrieve data, with features like:
-    - filters:
-        - filter by car, employee, date and any other useful queries
-    
-### Models
-
-So at this moment we have 3 models, which are:
-- Employee
-- Car
-- History
+    - which 'Employee' did a service
+- retrieve data, with an option to filter, search, order_by:
+- get useful collection of information for front-end plots     
 
 ### Endpoints
 
-```/history``` ```GET``` ```POST``` 
-- returns a list with all entries, this view will allow user to filter data
+```/history``` ```GET``` ```POST``` Params: ```search, filter, order_by```
+
 
 ```/history/{id}``` ```GET``` ```PUT``` ```DELTE``` 
-- self-explanatory
 
 ```/closest-services``` ```GET``` 
-- list of closest services for cars
 
 ```/workers``` ```GET```
-- self-explanatory
 
-```/cars``` ```GET``` ```POST``` 
-- self-explanatory 
+```/cars``` ```GET``` ```POST``` Params: ```search, filter, order_by```  
+
+```/dashboard``` ```GET```
 
 ### Security
 
-App is using default django/django-rest-framework auth
-
+App is using rest_framework_simplejwt.authentication.JWTAuthentication
