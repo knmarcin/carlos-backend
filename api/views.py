@@ -42,7 +42,12 @@ class CreateHistoryView(generics.CreateAPIView):
     serializer_class = CreateHistorySerializer
 
 
-class WorkerViewSet(generics.ListAPIView):
+class WorkerViewSet(generics.ListCreateAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = WorkerSerializer
+
+
+class WorkerDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = WorkerSerializer
 
